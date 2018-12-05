@@ -55,3 +55,31 @@ Either add data attributes to the `.js-map` element or pass them in the options 
   },
 }
 ```
+
+Lastly, you will likely need to alter your webpack config. Most setups by default will not minify any ES6 code from `node_modules` so we need to make an exception for this ES6 package. Also you may as well lint it, you can't rely on a random person from the internet to make things the best way, right?
+
+In your config where you load `.js` files:
+
+```js
+{
+  test: /\.js$/,
+  include: [
+    path.resolve(__dirname, paths.src.js),
+    path.resolve(__dirname, paths.src.entries),
+  ],
+  exclude: /node_modules(?!\/esm\-)/,
+  loader: 'babel-loader',
+  options: {
+    presets: ['@babel/preset-env'],
+    plugins: [
+      '@babel/plugin-syntax-dynamic-import',
+      '@babel/plugin-transform-runtime'
+    ],
+  },
+},
+{
+  test: /\.js$/,
+  exclude: /node_modules(?!\/esm\-)/,
+  loader: 'eslint-loader',
+},
+```
