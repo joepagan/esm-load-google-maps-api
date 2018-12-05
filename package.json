@@ -1,0 +1,14 @@
+{
+  "name": "esm-gmap-loader",
+  "version": "1.0.0",
+  "description": "A Webpack suitable ES Module that uses load-google-maps-api",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:extreme-creations/esm-gmap-loader.git"
+  },
+  "author": "Extreme Creations",
+  "license": "ISC",
+  "dependencies": {
+    "load-google-maps-api": "^1.3.2"
+  }
+}
